@@ -6,11 +6,9 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port =  process.env.PORT || 3001;
 
-const corsOptions = {
-    origin: "https://main--lively-hamster-bbba82.netlify.app/",
-  };
-  
-  app.use(cors(corsOptions));
+app.use(cors({
+  origin: 'https://main--lively-hamster-bbba82.netlify.app',
+  }));
   app.use(bodyParser.json());
 
 app.post("/", (req, res) => {
