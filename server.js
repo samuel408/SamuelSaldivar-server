@@ -7,9 +7,10 @@ const app = express();
 const port =  process.env.PORT || 3001;
 
 app.use(cors({
-  origin: 'https://main--lively-hamster-bbba82.netlify.app',
+  origin: '*',
   }));
-  app.use(bodyParser.json());
+
+app.use(bodyParser.json());
 
 app.post("/", (req, res) => {
     console.log('Received a POST request to / from:', req.get('origin'));
