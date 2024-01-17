@@ -13,10 +13,15 @@ app.use(cors({
 // open ai 
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
+
+
+
 app.post('/chat', async (req, res) => {
-  const prompt = "you need to pitch samuel to this potential employer whatever the employer asks relate it to his resume " + req.body;
+
+  
+  const prompt = "you need to pitch samuel to this potential employer whatever the employer asks relate it to his resume in brief:University of California, Merced | B.S Computer Science and Engineering | Expected: May 2024 Relevant Coursework: Advanced Programming, Data Structures, Computer Organization, Algorithm Design, Calculus, Discrete Math, Statistics, Linear Algebra, Physics, Database Systems, Software Engineering, Full Stack Web Development, Human-computer Interaction, Spatial Analysis. EXPERIENCE Software Engineering Intern | Sweep, Merced, CA | August 2023 - December 2023 Full Stack Software Engineer and Team Lead. Led the development of a sophisticated large language model (LLM) for PDF parsing and response generation. Utilized Python, Flask, HTML, JavaScript, and CSS for backend and user interface development. Demonstrated effective leadership and prompt engineering to fine-tune the AI model for project-specific needs. Full-stack Engineering Boot-camp | University of California, Berkeley, CA | December 2020 - May 2021 Completed UC Berkeley Extension Full Stack Bootcamp. Mastered frontend and backend development with expertise in HTML, CSS, JavaScript, React, Node.js, and database management. Developed server-side applications using Express.js, applying Agile methodologies and web security best practices. PROJECTS Tech Daily | Merced, CA Interactive platform similar to Reddit with user profiles, posts, discussions, and upvoting. Efficient SQL-backed infrastructure for seamless user experience. Covid Tracker | Berkeley, CA Developed COVID-19 Tracker app with Chart API and News API integration. User-friendly interface displaying the latest news and interactive charts. Weather Report | Merced, CA Designed and developed a Weather app using weather APIs. Implemented color-coded UV index feature and search history functionality. LEADERSHIP Sigma Chi Fraternity | Merced, CA | Lambda Delta Chapter Tribune and Alumni Chair, efficiently managing updates for alumni and international fraternity. Active in the outreach committee, providing constructive feedback and honing organizational skills. Coordinated chapter events and external communications, developing strong organizational, communication, and time management abilities. SKILLS Programming: Python, JavaScript, Java, C/C++, HTML/CSS, React.js, Node.js, Flask, Express.js, MySQL, SQLite3, MongoDB, Bootstrap. Software: Visual Studio Code, Pycharm, Docker, Github, Excel." + req.body;
 
   const completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
